@@ -5,34 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>محل دهب للحلاقة</title>
     <style>
+        /* تنسيق عام */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
             padding: 30px;
-            background-color: #f8f9fa;
+            background-image: url('https://source.unsplash.com/1600x900/?barbershop'); /* خلفية احترافية */
+            background-size: cover;
+            background-position: center;
+            color: white;
         }
         h1 {
-            color: #d4af37; /* لون ذهبي */
-            font-size: 32px;
+            color: #FFD700; /* لون ذهبي */
+            font-size: 38px;
+            background: rgba(0, 0, 0, 0.6);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
         }
         .description {
-            font-size: 18px;
+            font-size: 20px;
             margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
         }
         .counter {
-            font-size: 48px;
+            font-size: 50px;
             margin: 20px;
             font-weight: bold;
-            color: #333;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: inline-block;
         }
         #adminPanel {
-            display: none; /* مخفي افتراضيًا */
+            display: none;
             margin-top: 20px;
         }
         button {
             font-size: 18px;
             padding: 10px 20px;
-            margin: 5px;
+            margin: 10px;
             cursor: pointer;
             border: none;
             border-radius: 5px;
@@ -49,31 +64,32 @@
             background-color: blue;
             color: white;
         }
-        .owner {
+        .owner, .working-hours {
             margin-top: 20px;
             font-weight: bold;
-            font-size: 20px;
-            color: #555;
-        }
-        .icons {
-            font-size: 50px;
-            margin-top: 10px;
+            font-size: 22px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: inline-block;
         }
     </style>
 </head>
 <body>
 
-    <!-- نبذة عن المحل -->
+    <!-- عنوان المحل -->
     <h1>💈 محل دهب للحلاقة 💈</h1>
+
+    <!-- نبذة عن المحل -->
     <div class="description">
-        <p>✨ مرحبًا بكم في <strong>محل دهب للحلاقة</strong> حيث نقدم أفضل الخدمات بكل احترافية. ✂️</p>
+        <p>✨ مرحبًا بكم في <strong>محل دهب للحلاقة</strong> حيث نقدم أفضل الخدمات بكل احترافية.</p>
         <p>📅 تأسس في عام <strong>1990</strong> ونحن نحرص على تقديم تجربة فريدة لكل زبون.</p>
-        <p>✨ Welcome to <strong>Dahab Barber Shop</strong>, where we provide top-notch grooming services. ✂️</p>
+        <p>✨ Welcome to <strong>Dahab Barber Shop</strong>, where we provide top-notch grooming services.</p>
         <p>📅 Established in <strong>1990</strong>, we strive to offer a unique experience for every client.</p>
     </div>
 
-    <!-- أيقونات تعبر عن الحلاقة -->
-    <div class="icons">✂️ 💈 🪒</div>
+    <!-- مواعيد العمل -->
+    <div class="working-hours">🕒 مواعيد العمل: من 12:00 ظهرًا إلى 9:00 مساءً</div>
 
     <!-- عرض عدد الزبائن -->
     <h2>عدد الزبائن في المحل الآن</h2>
