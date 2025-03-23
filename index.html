@@ -1,143 +1,73 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>محل دهب للحلاقة</title>
     <style>
-        /* تنسيق عام */
         body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            padding: 30px;
-            background-image: url('https://source.unsplash.com/1600x900/?barbershop'); /* خلفية احترافية */
+            background: url('background.jpg') no-repeat center center fixed;
             background-size: cover;
-            background-position: center;
             color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
-        h1 {
-            color: #FFD700; /* لون ذهبي */
-            font-size: 38px;
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
             background: rgba(0, 0, 0, 0.6);
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 10px;
         }
-        .description {
-            font-size: 20px;
-            margin-bottom: 20px;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 15px;
-            border-radius: 10px;
-            display: inline-block;
+        .box {
+            width: 50%;
+            padding: 20px;
         }
-        .counter {
-            font-size: 50px;
-            margin: 20px;
+        h1, h2 {
+            color: gold;
+        }
+        .visitor-counter {
+            font-size: 24px;
             font-weight: bold;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 10px 20px;
+            background: rgba(255, 215, 0, 0.8);
+            color: black;
+            padding: 10px;
             border-radius: 10px;
             display: inline-block;
         }
-        #adminPanel {
-            display: none;
-            margin-top: 20px;
-        }
-        button {
-            font-size: 18px;
-            padding: 10px 20px;
-            margin: 10px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-        }
-        .btn-increase {
-            background-color: green;
-            color: white;
-        }
-        .btn-decrease {
-            background-color: red;
-            color: white;
-        }
-        .btn-admin {
-            background-color: blue;
-            color: white;
-        }
-        .owner, .working-hours {
-            margin-top: 20px;
-            font-weight: bold;
-            font-size: 22px;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 10px 20px;
-            border-radius: 10px;
-            display: inline-block;
+        .admin-login {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 12px;
+            opacity: 0.3;
         }
     </style>
 </head>
 <body>
-
-    <!-- عنوان المحل -->
-    <h1>💈 محل دهب للحلاقة 💈</h1>
-
-    <!-- نبذة عن المحل -->
-    <div class="description">
-        <p>✨ مرحبًا بكم في <strong>محل دهب للحلاقة</strong> حيث نقدم أفضل الخدمات بكل احترافية.</p>
-        <p>📅 تأسس في عام <strong>1990</strong> ونحن نحرص على تقديم تجربة فريدة لكل زبون.</p>
-        <p>✨ Welcome to <strong>Dahab Barber Shop</strong>, where we provide top-notch grooming services.</p>
-        <p>📅 Established in <strong>1990</strong>, we strive to offer a unique experience for every client.</p>
+    <a href="#" class="admin-login">Admin Login</a>
+    <div class="container">
+        <div class="box">
+            <h1>محل دهب للحلاقة</h1>
+            <h2>تأسس سنة 1991</h2>
+            <h3>مواعيد العمل: 12 ظهراً - 10 مساءً</h3>
+            <p class="visitor-counter">عدد الزوار: <span id="visitor-count">...</span></p>
+            <h4>تحت إشراف وإدارة: السعيد محمود</h4>
+        </div>
+        <div class="box" dir="ltr">
+            <h1>Dahab Barber Shop</h1>
+            <h2>Established in 1991</h2>
+            <h3>Opening Hours: 12 PM - 10 PM</h3>
+            <p class="visitor-counter">Visitors Count: <span id="visitor-count-en">...</span></p>
+            <h4>Under the management of: Elsaid Mahmoud</h4>
+        </div>
     </div>
-
-    <!-- مواعيد العمل -->
-    <div class="working-hours">🕒 مواعيد العمل: من 12:00 ظهرًا إلى 9:00 مساءً</div>
-
-    <!-- عرض عدد الزبائن -->
-    <h2>عدد الزبائن في المحل الآن</h2>
-    <div class="counter" id="count">0</div>
-
-    <!-- زر تسجيل دخول الأدمن -->
-    <button class="btn-admin" onclick="adminLogin()">🔑 تسجيل دخول الأدمن</button>
-
-    <!-- لوحة تحكم الأدمن -->
-    <div id="adminPanel">
-        <button class="btn-increase" onclick="increase()">+1</button>
-        <button class="btn-decrease" onclick="decrease()">-1</button>
-    </div>
-
-    <!-- اسم المالك -->
-    <div class="owner">👑 المالك: السعيد محمود</div>
-
     <script>
-        let count = localStorage.getItem("customerCount") || 0;
-        document.getElementById("count").innerText = count;
-
-        function updateCount() {
-            document.getElementById("count").innerText = count;
-            localStorage.setItem("customerCount", count);
-        }
-
-        function increase() {
-            count++;
-            updateCount();
-        }
-
-        function decrease() {
-            if (count > 0) count--;
-            updateCount();
-        }
-
-        // كلمة السر للأدمن
-        const adminPassword = "1234"; // غيرها كما تشاء
-
-        function adminLogin() {
-            let pass = prompt("من فضلك ادخل كلمة السر:");
-            if (pass === adminPassword) {
-                document.getElementById("adminPanel").style.display = "block";
-            } else {
-                alert("❌ كلمة السر خاطئة!");
-            }
-        }
+        document.getElementById("visitor-count").innerText = Math.floor(Math.random() * 1000) + 1;
+        document.getElementById("visitor-count-en").innerText = Math.floor(Math.random() * 1000) + 1;
     </script>
-
 </body>
 </html>
