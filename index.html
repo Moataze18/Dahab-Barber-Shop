@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محل دهب للحلاقة</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #d4af37; /* لون ذهبي */
+            font-size: 32px;
+        }
+        .description {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .counter {
+            font-size: 48px;
+            margin: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        #adminPanel {
+            display: none; /* مخفي افتراضيًا */
+            margin-top: 20px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn-increase {
+            background-color: green;
+            color: white;
+        }
+        .btn-decrease {
+            background-color: red;
+            color: white;
+        }
+        .btn-admin {
+            background-color: blue;
+            color: white;
+        }
+        .owner {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 20px;
+            color: #555;
+        }
+        .icons {
+            font-size: 50px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- نبذة عن المحل -->
+    <h1>💈 محل دهب للحلاقة 💈</h1>
+    <div class="description">
+        <p>✨ مرحبًا بكم في <strong>محل دهب للحلاقة</strong> حيث نقدم أفضل الخدمات بكل احترافية. ✂️</p>
+        <p>📅 تأسس في عام <strong>1990</strong> ونحن نحرص على تقديم تجربة فريدة لكل زبون.</p>
+        <p>✨ Welcome to <strong>Dahab Barber Shop</strong>, where we provide top-notch grooming services. ✂️</p>
+        <p>📅 Established in <strong>1990</strong>, we strive to offer a unique experience for every client.</p>
+    </div>
+
+    <!-- أيقونات تعبر عن الحلاقة -->
+    <div class="icons">✂️ 💈 🪒</div>
+
+    <!-- عرض عدد الزبائن -->
+    <h2>عدد الزبائن في المحل الآن</h2>
+    <div class="counter" id="count">0</div>
+
+    <!-- زر تسجيل دخول الأدمن -->
+    <button class="btn-admin" onclick="adminLogin()">🔑 تسجيل دخول الأدمن</button>
+
+    <!-- لوحة تحكم الأدمن -->
+    <div id="adminPanel">
+        <button class="btn-increase" onclick="increase()">+1</button>
+        <button class="btn-decrease" onclick="decrease()">-1</button>
+    </div>
+
+    <!-- اسم المالك -->
+    <div class="owner">👑 المالك: السعيد محمود</div>
+
+    <script>
+        let count = localStorage.getItem("customerCount") || 0;
+        document.getElementById("count").innerText = count;
+
+        function updateCount() {
+            document.getElementById("count").innerText = count;
+            localStorage.setItem("customerCount", count);
+        }
+
+        function increase() {
+            count++;
+            updateCount();
+        }
+
+        function decrease() {
+            if (count > 0) count--;
+            updateCount();
+        }
+
+        // كلمة السر للأدمن
+        const adminPassword = "1234"; // غيرها كما تشاء
+
+        function adminLogin() {
+            let pass = prompt("من فضلك ادخل كلمة السر:");
+            if (pass === adminPassword) {
+                document.getElementById("adminPanel").style.display = "block";
+            } else {
+                alert("❌ كلمة السر خاطئة!");
+            }
+        }
+    </script>
+
+</body>
+</html>
