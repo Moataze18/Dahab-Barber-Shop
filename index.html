@@ -1,73 +1,171 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محل دهب للحلاقة</title>
-    <style>
-        body {
-            background: url('background.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.6);
-        }
-        .box {
-            width: 50%;
-            padding: 20px;
-        }
-        h1, h2 {
-            color: gold;
-        }
-        .visitor-counter {
-            font-size: 24px;
-            font-weight: bold;
-            background: rgba(255, 215, 0, 0.8);
-            color: black;
-            padding: 10px;
-            border-radius: 10px;
-            display: inline-block;
-        }
-        .admin-login {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 12px;
-            opacity: 0.3;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>محل دهب للحلاقة</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      color: white;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: flex-start;
+      margin-top: 50px;
+    }
+
+    .box {
+      width: 45%;
+      min-width: 300px;
+      background: rgba(0, 0, 0, 0.5);
+      margin: 10px;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    h1, h2 {
+      color: gold;
+      margin-bottom: 10px;
+    }
+
+    .visitor-counter {
+      font-size: 24px;
+      font-weight: bold;
+      background: rgba(255, 215, 0, 0.9);
+      color: black;
+      padding: 10px;
+      border-radius: 10px;
+      display: inline-block;
+      margin: 15px 0;
+    }
+
+    #admin-login {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: gold;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      opacity: 0.5;
+    }
+
+    .admin-controls {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .admin-controls button {
+      font-size: 16px;
+      padding: 8px 15px;
+      margin: 5px;
+      cursor: pointer;
+      border: none;
+      background: gold;
+      color: black;
+      border-radius: 5px;
+    }
+
+    p, h3, h4 {
+      margin: 10px 0;
+    }
+  </style>
 </head>
 <body>
-    <a href="#" class="admin-login">Admin Login</a>
+
+  <button id="admin-login">Admin Login</button>
+
+  <div class="overlay">
     <div class="container">
-        <div class="box">
-            <h1>محل دهب للحلاقة</h1>
-            <h2>تأسس سنة 1991</h2>
-            <h3>مواعيد العمل: 12 ظهراً - 10 مساءً</h3>
-            <p class="visitor-counter">عدد الزوار: <span id="visitor-count">...</span></p>
-            <h4>تحت إشراف وإدارة: السعيد محمود</h4>
+      <div class="box" dir="rtl">
+        <h1>محل دهب للحلاقة</h1>
+        <h2>تأسس سنة 1991</h2>
+        <h3>مواعيد العمل: من 12 ظهرًا حتى 10 مساءً</h3>
+
+        <p class="visitor-counter">
+          عدد الزوار في المحل: <span id="arabic-count">0</span>
+        </p>
+
+        <div class="admin-controls" id="arabic-controls">
+          <button onclick="increaseCount()">➕</button>
+          <button onclick="decreaseCount()">➖</button>
         </div>
-        <div class="box" dir="ltr">
-            <h1>Dahab Barber Shop</h1>
-            <h2>Established in 1991</h2>
-            <h3>Opening Hours: 12 PM - 10 PM</h3>
-            <p class="visitor-counter">Visitors Count: <span id="visitor-count-en">...</span></p>
-            <h4>Under the management of: Elsaid Mahmoud</h4>
+
+        <h4>تحت إشراف وإدارة: السعيد محمود</h4>
+      </div>
+
+      <div class="box" dir="ltr">
+        <h1>Dahab Barber Shop</h1>
+        <h2>Established in 1991</h2>
+        <h3>Working Hours: 12 PM - 10 PM</h3>
+
+        <p class="visitor-counter">
+          Visitors in Store: <span id="english-count">0</span>
+        </p>
+
+        <div class="admin-controls" id="english-controls">
+          <button onclick="increaseCount()">➕</button>
+          <button onclick="decreaseCount()">➖</button>
         </div>
+
+        <h4>Under the Supervision of: El-Saeed Mahmoud</h4>
+      </div>
     </div>
-    <script>
-        document.getElementById("visitor-count").innerText = Math.floor(Math.random() * 1000) + 1;
-        document.getElementById("visitor-count-en").innerText = Math.floor(Math.random() * 1000) + 1;
-    </script>
+  </div>
+
+  <script>
+    let customerCount = 0;
+
+    function updateCounts() {
+      document.getElementById('arabic-count').innerText = customerCount;
+      document.getElementById('english-count').innerText = customerCount;
+    }
+
+    function increaseCount() {
+      customerCount++;
+      updateCounts();
+    }
+
+    function decreaseCount() {
+      if (customerCount > 0) {
+        customerCount--;
+        updateCounts();
+      }
+    }
+
+    document.getElementById('admin-login').addEventListener('click', () => {
+      let pass = prompt('Enter Admin Password:');
+      if (pass === '12661') {
+        document.getElementById('arabic-controls').style.display = 'block';
+        document.getElementById('english-controls').style.display = 'block';
+        alert('Admin Access Granted');
+      } else {
+        alert('Wrong Password!');
+      }
+    });
+
+    updateCounts();
+  </script>
 </body>
 </html>
